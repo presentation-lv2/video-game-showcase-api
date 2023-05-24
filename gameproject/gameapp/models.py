@@ -11,4 +11,20 @@ class Game(models.Model):
     def __str__(self):
         return self.name
     
+class Category(models.Model):
 
+    id = models.IntegerField(primary_key=True, null=False)
+    name = models.CharField(null=False, max_length = 200)
+
+    def __str__(self):
+        return self.name
+
+
+class GameCategory(models.Model):
+
+    id = models.IntegerField(primary_key=True, null=False)
+    game = models.ForeignKey(Game, related_name='game_fk', on_delete=models.CASCADE)
+    Category = models.ForeignKey(Category, related_name='category_fk', on_delete=models.CASCADE)
+
+    def __str__(self) -> str:
+        return super().__str__().index
