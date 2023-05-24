@@ -24,7 +24,7 @@ class GameCategory(models.Model):
 
     id = models.IntegerField(primary_key=True, null=False)
     game = models.ForeignKey(Game, related_name='game_fk', on_delete=models.CASCADE)
-    Category = models.ForeignKey(Category, related_name='category_fk', on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, related_name='category_fk', on_delete=models.CASCADE)
 
-    def __str__(self) -> str:
-        return super().__str__().index
+    def __str__(self):
+        return self.game.name
