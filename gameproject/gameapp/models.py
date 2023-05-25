@@ -11,6 +11,7 @@ class Game(models.Model):
     def __str__(self):
         return self.name
     
+
 class Category(models.Model):
 
     id = models.IntegerField(primary_key=True, null=False)
@@ -28,3 +29,23 @@ class GameCategory(models.Model):
 
     def __str__(self):
         return self.game.name
+
+class Users(models.Model):
+
+    id = models.IntegerField(primary_key=True,null=False)
+    username = models.CharField(null=False)
+    role = models.CharField(null=False)
+
+    def __str__(self):
+        return self.username
+
+class Post(models.Model):
+
+    id = models.IntegerField(primary_key=True,null=False)
+    message = models.CharField(null=False)
+    game_id = models.Foreignkey(Game, related_name='game', on_delete=models.CASCADE)
+    user_id = models.Foreignkey(Users, related_name='users', on_delete=models.CASCADE)
+    
+
+    def __str__(self):
+        return self.message
