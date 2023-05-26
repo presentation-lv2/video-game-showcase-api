@@ -49,3 +49,23 @@ class Post(models.Model):
 
     def __str__(self):
         return self.message
+
+
+class Target(models.Model):
+
+    id = models.IntegerField(primary_key=True,null=False)
+    name = models.CharField(null=False)
+
+    def __str__(self):
+        return self.name
+
+
+class GameTarget(models.Model):
+
+    id = models.IntegerField(primary_key=True,null=False)
+    game = models.ForeignKey(Game, related_name="game_fk", on_delete=models.CASCADE)
+    target = models.ForeignKey(Target, related_name="target_fk", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.game.name
+    
