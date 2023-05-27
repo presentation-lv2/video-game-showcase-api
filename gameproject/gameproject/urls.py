@@ -17,8 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from gameapp.routers import GameRouter
+from gameapp.views import SwaggerView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(GameRouter.router.urls))
+    path('', include(GameRouter.router.urls)),
+    path('api/swagger/', SwaggerView.schema_view.with_ui("swagger", cache_timeout=0))
 ]
