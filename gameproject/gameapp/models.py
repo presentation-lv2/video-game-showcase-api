@@ -25,10 +25,10 @@ class GameCategory(models.Model):
 
     id = models.IntegerField(primary_key=True, null=False)
     game = models.ForeignKey(Game, related_name='game_fk', on_delete=models.CASCADE)
-    category = models.ForeignKey(Category, related_name='category_fk', on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, related_name='category', on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.game.name
+        return self.id
 
 class Users(models.Model):
 
@@ -43,8 +43,8 @@ class Post(models.Model):
 
     id = models.IntegerField(primary_key=True,null=False)
     message = models.CharField(null=False)
-    game_id = models.Foreignkey(Game, related_name='game', on_delete=models.CASCADE)
-    user_id = models.Foreignkey(Users, related_name='users', on_delete=models.CASCADE)
+    game = models.ForeignKey(Game, related_name='game_id', on_delete=models.CASCADE)
+    poster = models.ForeignKey(Users, related_name='poster', on_delete=models.CASCADE)
     
 
     def __str__(self):
@@ -63,9 +63,9 @@ class Target(models.Model):
 class GameTarget(models.Model):
 
     id = models.IntegerField(primary_key=True,null=False)
-    game = models.ForeignKey(Game, related_name="game_fk", on_delete=models.CASCADE)
-    target = models.ForeignKey(Target, related_name="target_fk", on_delete=models.CASCADE)
+    game = models.ForeignKey(Game, related_name='game', on_delete=models.CASCADE)
+    target = models.ForeignKey(Target, related_name='target', on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.game.name
+        return self.id
     
