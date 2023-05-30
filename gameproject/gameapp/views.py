@@ -1,6 +1,6 @@
 from rest_framework.viewsets import ModelViewSet
-from gameapp.serializers import GameSerializers, GameTargetSerializers, TargetSerializers
-from gameapp.models import Game, GameTarget, Target
+from gameapp.serializers import GameSerializers, GameTargetSerializers, TargetSerializers, UsersSerializers
+from gameapp.models import Game, GameTarget, Target, Users
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
@@ -34,4 +34,11 @@ class GameTargetView(ModelViewSet):
 
     def get_queryset(self):
         return GameTarget.objects.all()
+    
+class UsersView(ModelViewSet):
+
+    serializer_class = UsersSerializers
+
+    def get_queryset(self):
+        return Users.objects.all()
     

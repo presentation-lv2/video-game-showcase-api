@@ -1,5 +1,5 @@
 from rest_framework.serializers import ModelSerializer, CharField, IntegerField
-from gameapp.models import Game, Target, GameTarget
+from gameapp.models import Game, Target, GameTarget, Users
 
 class GameSerializers(ModelSerializer):
 
@@ -26,3 +26,9 @@ class GameTargetSerializers(ModelSerializer):
     class Meta:
         model = GameTarget
         fields = ["id","game","target","game_id","target_id"]
+
+class UsersSerializers(ModelSerializer):
+
+    class Meta:
+        model = Users
+        fields = ["id","username","password","role"]

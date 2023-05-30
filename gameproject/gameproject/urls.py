@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from gameapp.routers import GameRouter, TargetRouter, GameTargetRouter
+from gameapp.routers import GameRouter, TargetRouter, GameTargetRouter,UsersRouter
 from gameapp.views import SwaggerView
 
 urlpatterns = [
@@ -24,5 +24,6 @@ urlpatterns = [
     path('', include(GameRouter.router.urls)),
     path('', include(TargetRouter.router.urls)),
     path('', include(GameTargetRouter.router.urls)),
+    path('', include(UsersRouter.router.urls)),
     path('api/swagger/', SwaggerView.schema_view.with_ui("swagger", cache_timeout=0))
 ]

@@ -35,6 +35,7 @@ class Users(models.Model):
 
     id = models.IntegerField(primary_key=True,null=False)
     username = models.CharField(null=False)
+    password = models.CharField(null=False, default="")
     role = models.CharField(null=False)
 
     def __str__(self):
