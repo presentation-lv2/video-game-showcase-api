@@ -15,8 +15,15 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from gameapp.routers import GameRouter, TargetRouter, GameTargetRouter,UsersRouter
+from gameapp.views import SwaggerView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include(GameRouter.router.urls)),
+    path('', include(TargetRouter.router.urls)),
+    path('', include(GameTargetRouter.router.urls)),
+    path('', include(UsersRouter.router.urls)),
+    path('api/swagger/', SwaggerView.schema_view.with_ui("swagger", cache_timeout=0))
 ]
