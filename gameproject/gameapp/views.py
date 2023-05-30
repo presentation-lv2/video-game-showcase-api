@@ -3,6 +3,7 @@ from gameapp.serializers import GameSerializers, GameTargetSerializers, TargetSe
 from gameapp.models import Game, GameTarget, Target, Users
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+from rest_framework.filters import SearchFilter
 
 class SwaggerView:
     schema_view = get_schema_view(
@@ -16,29 +17,39 @@ class SwaggerView:
 
 class GameView(ModelViewSet):
 
+    queryset = Game.objects.all()
     serializer_class = GameSerializers
-
-    def get_queryset(self):
-        return Game.objects.all()
     
 class TargetView(ModelViewSet):
 
+    queryset = Target.objects.all()
     serializer_class = TargetSerializers
-
-    def get_queryset(self):
-        return Target.objects.all()
     
 class GameTargetView(ModelViewSet):
-
-    serializer_class = GameTargetSerializers
+    
+    serializer_class = GameTargetSerializers 
 
     def get_queryset(self):
-        return GameTarget.objects.all()
+        queryset = GameTarget.objects.all()
+        game_id = self.request.GET.get('game_id')
+        target_id = self.request.GET.get('target_id')
+        if game_id is not None:
+            queryset = queryset.filter(game=game_id)
+        if target_id is not None:
+            queryset = queryset.filter(target=target_id)
+        return queryset
+            
+        
+    
     
 class UsersView(ModelViewSet):
 
     serializer_class = UsersSerializers
 
     def get_queryset(self):
-        return Users.objects.all()
+        queryset = Users.objects.all()
+        username = self.request.GET.get('username')
+        if username is not None:
+            queryset = queryset.filter(username=username)
+        return queryset
     
