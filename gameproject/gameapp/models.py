@@ -5,9 +5,9 @@ class Game(models.Model):
 
     id = models.IntegerField(primary_key=True,null=False)
     name = models.CharField(null=False, max_length= 200)
-    description = models.CharField(null=False, max_length=200)
+    description = models.CharField(max_length=200)
     realise_date = models.DateField(null=False)
-    layout = models.CharField(null=True, max_length=100)
+    layout = models.CharField(max_length=100)
     image = models.BinaryField()
 
     def __str__(self):
@@ -45,7 +45,7 @@ class Users(models.Model):
 class Post(models.Model):
 
     id = models.IntegerField(primary_key=True,null=False)
-    message = models.CharField(null=False, max_length=100)
+    message = models.CharField(max_length=100)
     date = models.DateTimeField(null=False, default=timezone.now)
     game = models.ForeignKey(Game, related_name='game_id', on_delete=models.CASCADE)
     poster = models.ForeignKey(Users, related_name='poster', on_delete=models.CASCADE)
