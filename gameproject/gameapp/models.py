@@ -7,7 +7,7 @@ class Game(models.Model):
     name = models.CharField(null=False, max_length= 200)
     description = models.CharField(null=False, max_length=200)
     realise_date = models.DateField(null=False)
-    layout = models.CharField(null=True)
+    layout = models.CharField(null=True, max_length=100)
     image = models.BinaryField()
 
     def __str__(self):
@@ -37,7 +37,7 @@ class Users(models.Model):
     id = models.IntegerField(primary_key=True,null=False)
     username = models.CharField(null=False, max_length=100)
     password = models.CharField(null=False, default="", max_length=20)
-    role = models.CharField(null=False)
+    role = models.CharField(null=False, max_length=100)
 
     def __str__(self):
         return self.username
