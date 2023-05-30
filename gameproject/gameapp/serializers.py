@@ -7,4 +7,4 @@ class GameSerializers(ModelSerializer):
 
     class Meta:
         model = Game
-        fields = ["id","name","description","realise_date","image"]
+        fields = ["id","name","description","realise_date","layout","image"]
