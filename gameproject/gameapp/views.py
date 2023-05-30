@@ -38,10 +38,7 @@ class GameTargetView(ModelViewSet):
         if target_id is not None:
             queryset = queryset.filter(target=target_id)
         return queryset
-            
-        
-    
-    
+               
 class UsersView(ModelViewSet):
 
     serializer_class = UsersSerializers
