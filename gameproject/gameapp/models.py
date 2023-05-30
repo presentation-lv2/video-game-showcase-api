@@ -43,8 +43,8 @@ class Post(models.Model):
 
     id = models.IntegerField(primary_key=True,null=False)
     message = models.CharField(null=False)
-    game_id = models.Foreignkey(Game, related_name='game', on_delete=models.CASCADE)
-    user_id = models.Foreignkey(Users, related_name='users', on_delete=models.CASCADE)
+    game_id = models.ForeignKey(Game, related_name='game', on_delete=models.CASCADE)
+    user_id = models.ForeignKey(Users, related_name='users', on_delete=models.CASCADE)
     
 
     def __str__(self):
