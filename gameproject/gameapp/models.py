@@ -5,7 +5,7 @@ class Game(models.Model):
 
     id = models.IntegerField(primary_key=True,null=False)
     name = models.CharField(null=False, max_length= 200)
-    description = models.CharField(null=False)
+    description = models.CharField(null=False, max_length=200)
     realise_date = models.DateField(null=False)
     layout = models.CharField(null=True)
     image = models.BinaryField()
@@ -17,7 +17,7 @@ class Game(models.Model):
 class Category(models.Model):
 
     id = models.IntegerField(primary_key=True, null=False)
-    name = models.CharField(null=False, max_length = 200)
+    name = models.CharField(null=False, max_length = 100)
 
     def __str__(self):
         return self.name
@@ -35,8 +35,8 @@ class GameCategory(models.Model):
 class Users(models.Model):
 
     id = models.IntegerField(primary_key=True,null=False)
-    username = models.CharField(null=False)
-    password = models.CharField(null=False, default="")
+    username = models.CharField(null=False, max_length=100)
+    password = models.CharField(null=False, default="", max_length=20)
     role = models.CharField(null=False)
 
     def __str__(self):
@@ -45,7 +45,7 @@ class Users(models.Model):
 class Post(models.Model):
 
     id = models.IntegerField(primary_key=True,null=False)
-    message = models.CharField(null=False)
+    message = models.CharField(null=False, max_length=100)
     date = models.DateTimeField(null=False, default=timezone.now)
     game = models.ForeignKey(Game, related_name='game_id', on_delete=models.CASCADE)
     poster = models.ForeignKey(Users, related_name='poster', on_delete=models.CASCADE)
@@ -58,7 +58,7 @@ class Post(models.Model):
 class Target(models.Model):
 
     id = models.IntegerField(primary_key=True,null=False)
-    name = models.CharField(null=False)
+    name = models.CharField(null=False, max_length=100)
 
     def __str__(self):
         return self.name
