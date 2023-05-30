@@ -6,7 +6,7 @@ class Game(models.Model):
     name = models.CharField(null=False, max_length= 200)
     description = models.CharField(null=False)
     realise_date = models.DateField(null=False)
-    layout = models.CharField()
+    layout = models.CharField(null=False)
     image = models.BinaryField()
 
     def __str__(self):
