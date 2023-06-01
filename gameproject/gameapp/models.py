@@ -46,9 +46,10 @@ class Post(models.Model):
 
     id = models.IntegerField(primary_key=True,null=False)
     message = models.CharField(null=False)
+
     date = models.DateTimeField(null=False, default=timezone.now)
-    game = models.ForeignKey(Game, related_name='game_id', on_delete=models.CASCADE)
-    poster = models.ForeignKey(Users, related_name='poster', on_delete=models.CASCADE)
+    game_id = models.ForeignKey(Game, related_name='game', on_delete=models.CASCADE)
+    user_id = models.ForeignKey(Users, related_name='users', on_delete=models.CASCADE)
     
 
     def __str__(self):
