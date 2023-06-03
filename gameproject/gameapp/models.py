@@ -3,7 +3,7 @@ from django.utils import timezone
 
 class Game(models.Model):
 
-    id = models.IntegerField(primary_key=True,null=False, auto_created=True)
+    id = models.AutoField(primary_key=True,null=False, auto_created=True)
     name = models.CharField(null=False, max_length= 200)
     description = models.CharField(null=False, max_length=100)
     realise_date = models.DateField(null=False)
@@ -16,7 +16,7 @@ class Game(models.Model):
 
 class Category(models.Model):
 
-    id = models.IntegerField(primary_key=True, null=False)
+    id = models.AutoField(primary_key=True, null=False)
     name = models.CharField(null=False, max_length = 200)
 
     def __str__(self):
@@ -25,9 +25,9 @@ class Category(models.Model):
 
 class GameCategory(models.Model):
 
-    id = models.IntegerField(primary_key=True, null=False)
+    id = models.AutoField(primary_key=True, null=False)
     game = models.ForeignKey(Game, related_name='game_fk', on_delete=models.CASCADE)
-    category = models.ForeignKey(Category, related_name='category', on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, related_name='category_id', db_column="category_id", on_delete=models.CASCADE, default=1)
 
     def __str__(self):
         return self.id
@@ -44,11 +44,11 @@ class Users(models.Model):
 
 class Post(models.Model):
 
-    id = models.IntegerField(primary_key=True,null=False)
+    id = models.AutoField(primary_key=True,null=False)
     message = models.CharField(null=False,max_length=100)
     date = models.DateTimeField(null=False, default=timezone.now)
-    game_id = models.ForeignKey(Game, related_name='game', on_delete=models.CASCADE)
-    user_id = models.ForeignKey(Users, related_name='users', on_delete=models.CASCADE)
+    game_id = models.ForeignKey(Game, related_name='game', on_delete=models.CASCADE, default=1)
+    user_id = models.ForeignKey(Users, related_name='users', on_delete=models.CASCADE, default=1)
     
 
     def __str__(self):
@@ -57,7 +57,7 @@ class Post(models.Model):
 
 class Target(models.Model):
 
-    id = models.IntegerField(primary_key=True,null=False)
+    id = models.AutoField(primary_key=True,null=False)
     name = models.CharField(null=False,max_length=50)
 
     def __str__(self):
@@ -66,7 +66,7 @@ class Target(models.Model):
 
 class GameTarget(models.Model):
 
-    id = models.IntegerField(primary_key=True,null=False)
+    id = models.AutoField(primary_key=True,null=False)
     game = models.ForeignKey(Game, related_name='game_to_target', on_delete=models.CASCADE)
     target = models.ForeignKey(Target, related_name='target', on_delete=models.CASCADE)
 
