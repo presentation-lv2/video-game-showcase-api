@@ -1,13 +1,21 @@
-from rest_framework.serializers import ModelSerializer, CharField, IntegerField
+from rest_framework.serializers import ModelSerializer, CharField, IntegerField, FileField, SerializerMethodField, StringRelatedField
 from gameapp.models import Game, Target, GameTarget, Users
+from django.conf import settings
 
 class GameSerializers(ModelSerializer):
 
-    image = CharField()
+    image = FileField(write_only=True)
+    image_url = SerializerMethodField()
+
+    def get_image_url(self, obj):
+        req = self.context.get('request')
+        if obj.image:
+            return req.build_absolute_uri(obj.image.url)
+        return None
 
     class Meta:
         model = Game
-        fields = ["id","name","description","realise_date","layout","image"]
+        fields = ["id","name","description","realise_date","layout","image","image_url"]
 
 
 class TargetSerializers(ModelSerializer):
