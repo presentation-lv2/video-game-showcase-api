@@ -1,6 +1,6 @@
 from rest_framework.viewsets import ModelViewSet
-from gameapp.serializers import GameSerializers, GameTargetSerializers, TargetSerializers, UsersSerializers
-from gameapp.models import Game, GameTarget, Target, Users
+from gameapp.serializers import GameSerializers, GameTargetSerializers, TargetSerializers, UsersSerializers, CategorySerialisers
+from gameapp.models import Game, GameTarget, Target, Users, Category
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from rest_framework.filters import SearchFilter
@@ -50,3 +50,7 @@ class UsersView(ModelViewSet):
             queryset = queryset.filter(username=username)
         return queryset
     
+class CategoryView(ModelViewSet);
+
+    queryset = Category.objects.all()
+    serializer_class = CategorySerialisers

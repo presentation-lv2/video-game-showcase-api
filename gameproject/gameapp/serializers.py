@@ -1,5 +1,5 @@
 from rest_framework.serializers import ModelSerializer, CharField, IntegerField, FileField, SerializerMethodField, StringRelatedField
-from gameapp.models import Game, Target, GameTarget, Users
+from gameapp.models import Game, Target, GameTarget, Users, Category
 from django.conf import settings
 
 class GameSerializers(ModelSerializer):
@@ -40,3 +40,9 @@ class UsersSerializers(ModelSerializer):
     class Meta:
         model = Users
         fields = ["id","username","password","role"]
+
+class CategorySerialisers(ModelSerializer):
+
+    class Meta:
+        model = Category
+        fields = ["id", "name"]
