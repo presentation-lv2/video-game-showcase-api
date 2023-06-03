@@ -136,7 +136,7 @@ STATIC_URL = 'gameapp/static/'
 
 STATICFILE_DIRS = [
     BASE_DIR / "gameapp/static",
-    "https://showcasegame-api.onrender.com/gameapp/static/"
+    "https://showcasegame-api.onrender.com" / "gameapp/static/"
 ]
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
