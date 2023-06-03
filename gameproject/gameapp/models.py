@@ -68,7 +68,7 @@ class Target(models.Model):
 class GameTarget(models.Model):
 
     id = models.IntegerField(primary_key=True,null=False)
-    game = models.ForeignKey(Game, related_name='game', on_delete=models.CASCADE)
+    game = models.ForeignKey(Game, related_name='game_to_target', on_delete=models.CASCADE)
     target = models.ForeignKey(Target, related_name='target', on_delete=models.CASCADE)
 
     def __str__(self):
