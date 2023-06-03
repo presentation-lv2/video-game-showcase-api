@@ -3,12 +3,12 @@ from django.utils import timezone
 
 class Game(models.Model):
 
-    id = models.IntegerField(primary_key=True,null=False)
+    id = models.IntegerField(primary_key=True,null=False, auto_created=True)
     name = models.CharField(null=False, max_length= 200)
     description = models.CharField(null=False)
     realise_date = models.DateField(null=False)
     layout = models.CharField(null=True)
-    image = models.BinaryField()
+    image = models.FileField(upload_to= 'gameapp/static')
 
     def __str__(self):
         return self.name
@@ -34,7 +34,7 @@ class GameCategory(models.Model):
 
 class Users(models.Model):
 
-    id = models.IntegerField(primary_key=True,null=False)
+    id = models.AutoField(primary_key=True,null=False,)
     username = models.CharField(null=False)
     password = models.CharField(null=False, default="")
     role = models.CharField(null=False)
