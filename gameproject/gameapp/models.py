@@ -5,7 +5,7 @@ class Game(models.Model):
 
     id = models.AutoField(primary_key=True,null=False, auto_created=True)
     name = models.CharField(null=False, max_length= 200)
-    description = models.CharField(null=False, max_length=100)
+    description = models.CharField(null=False, max_length=200)
     realise_date = models.DateField(null=False)
     layout = models.CharField(null=True, max_length=50)
     image = models.FileField(upload_to= 'gameapp/static')
