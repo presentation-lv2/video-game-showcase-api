@@ -29,7 +29,9 @@ SECRET_KEY = 'django-insecure-(*jl_gw=de_!p#$&t&l2iq9udfqc8s4j=&u+f*iaty9=hz7v=x
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'showcasegame-api.onrender.com'
+]
 
 
 # Application definition
