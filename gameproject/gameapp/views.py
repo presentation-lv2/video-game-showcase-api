@@ -1,6 +1,6 @@
 from rest_framework.viewsets import ModelViewSet
-from gameapp.serializers import GameSerializers, GameTargetSerializers, TargetSerializers, UsersSerializers, CategorySerialisers
-from gameapp.models import Game, GameTarget, Target, Users, Category
+from gameapp.serializers import GameSerializers, GameTargetSerializers, TargetSerializers, UsersSerializers, CategorySerialisers, GameCategorySerialisers
+from gameapp.models import Game, GameTarget, Target, Users, Category, GameCategory
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from rest_framework.filters import SearchFilter
@@ -50,7 +50,21 @@ class UsersView(ModelViewSet):
             queryset = queryset.filter(username=username)
         return queryset
     
-class CategoryView(ModelViewSet);
+class CategoryView(ModelViewSet):
 
     queryset = Category.objects.all()
     serializer_class = CategorySerialisers
+
+class GameCategoryView(ModelViewSet):
+
+    serializer_class = GameCategorySerialisers
+
+    def get_queryset(self):
+        queryset = GameCategory.objects.all()
+        category = self.request.GET.get('category')
+        game = self.request.GET.get('game')
+        if category is not None:
+            queryset = queryset.filter(category=category)
+        if game is not None:
+            queryset = queryset.filter(game=game)
+        return queryset
