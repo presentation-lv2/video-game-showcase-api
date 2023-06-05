@@ -1,5 +1,5 @@
 from rest_framework.serializers import ModelSerializer, CharField, IntegerField, FileField, SerializerMethodField, StringRelatedField
-from gameapp.models import Game, Target, GameTarget, Users, Category, GameCategory
+from gameapp.models import Game, Target, GameTarget, Users, Category, GameCategory, Post
 from django.conf import settings
 
 class GameSerializers(ModelSerializer):
@@ -56,3 +56,12 @@ class GameCategorySerialisers(ModelSerializer):
     class Meta:
         model = GameCategory
         fields = ["id", "game", "game_id", "category", "category_id"]
+
+class PostSerialisers(ModelSerializer):
+    game = GameSerializers(read_only=True)
+    game_id = IntegerField(write_only=True)
+    user = UsersSerializers(read_only=True)
+    user_id = IntegerField(write_only=True)
+    class Meta:
+        model = Post
+        fields = ["id", "message", "date","game", "game_id","user", "user_id"]

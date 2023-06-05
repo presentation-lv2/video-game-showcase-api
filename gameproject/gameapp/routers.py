@@ -24,3 +24,7 @@ class CategoryRouter:
 class GameCategoryRouter:
     router = routers.SimpleRouter()
     router.register('gameCategory', GameCategoryView, basename='game-category' )
+
+class PostRouter:
+    router = routers.SimpleRouter()
+    router.register('post', PostView, basename='post')
