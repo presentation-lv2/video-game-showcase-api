@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from gameapp.routers import GameRouter, TargetRouter, GameTargetRouter,UsersRouter, CategoryRouter, GameCategoryRouter
+from gameapp.routers import GameRouter, TargetRouter, GameTargetRouter,UsersRouter, CategoryRouter, GameCategoryRouter, PostRouter
 from gameapp.views import SwaggerView
 
 urlpatterns = [
