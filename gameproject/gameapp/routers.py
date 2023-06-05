@@ -1,5 +1,5 @@
 from rest_framework import routers
-from gameapp.views import GameView, TargetView, GameTargetView, UsersView, CategoryView, GameCategoryView
+from gameapp.views import GameView, TargetView, GameTargetView, UsersView, CategoryView, GameCategoryView, PostView
 
 class GameRouter:
     router = routers.SimpleRouter()
