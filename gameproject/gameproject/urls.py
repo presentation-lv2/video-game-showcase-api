@@ -18,6 +18,8 @@ from django.contrib import admin
 from django.urls import path, include
 from gameapp.routers import GameRouter, TargetRouter, GameTargetRouter,UsersRouter, CategoryRouter, GameCategoryRouter, PostRouter
 from gameapp.views import SwaggerView
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,4 +31,4 @@ urlpatterns = [
     path('', include(GameCategoryRouter.router.urls)),
     path('', include(PostRouter.router.urls)),
     path('api/swagger/', SwaggerView.schema_view.with_ui("swagger", cache_timeout=0))
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

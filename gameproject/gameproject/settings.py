@@ -30,7 +30,8 @@ SECRET_KEY = 'django-insecure-(*jl_gw=de_!p#$&t&l2iq9udfqc8s4j=&u+f*iaty9=hz7v=x
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'showcasegame-api.onrender.com'
+    'showcasegame-api.onrender.com',
+    '127.0.0.1'
 ]
 
 
@@ -135,7 +136,7 @@ USE_TZ = True
 STATIC_URL = 'gameapp/static/'
 
 STATICFILE_DIRS = [
-    os.path.join(BASE_DIR,"gameapp/static"),
+    BASE_DIR / "gameapp/static",
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR,"staticfiles")
