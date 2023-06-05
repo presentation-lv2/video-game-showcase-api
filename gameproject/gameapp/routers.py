@@ -1,5 +1,5 @@
 from rest_framework import routers
-from gameapp.views import GameView, TargetView, GameTargetView, UsersView
+from gameapp.views import GameView, TargetView, GameTargetView, UsersView, CategoryView, GameCategoryView
 
 class GameRouter:
     router = routers.SimpleRouter()
@@ -16,3 +16,15 @@ class GameTargetRouter:
 class UsersRouter:
     router = routers.SimpleRouter()
     router.register('users', UsersView, basename='users')
+
+class CategoryRouter:
+    router = routers.SimpleRouter()
+    router.register('category', CategoryView, basename='category' )
+
+class GameCategoryRouter:
+    router = routers.SimpleRouter()
+    router.register('gameCategory', GameCategoryView, basename='game-category' )
+
+class PostRouter:
+    router = routers.SimpleRouter()
+    router.register('post', PostView, basename='post')
